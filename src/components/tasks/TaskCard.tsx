@@ -52,21 +52,25 @@ const TaskCard = ({
         </h3>
 
         {/* Task Description */}
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
-          {description}
-        </p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-2">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs">
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="text-xs items-center"
+            >
               {tag}
             </Badge>
           ))}
         </div>
+        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-[3] mb-[3]">
+          {description}
+        </p>
 
         {/* Due Date */}
-        <div className="text-xs text-gray-500 dark:text-gray-400 mt-auto">
+        <div className="text-gray-500 dark:text-gray-400 mt-auto text-sm">
           Due: {new Date(dueDate).toLocaleDateString()}
         </div>
 

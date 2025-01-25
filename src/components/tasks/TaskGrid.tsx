@@ -15,6 +15,7 @@ interface Task {
 interface TaskGridProps {
   tasks?: Task[];
   viewMode?: "grid" | "list";
+  searchQuery?: string;
   onTaskEdit?: (taskId: string) => void;
   onTaskDelete?: (taskId: string) => void;
   onTaskComplete?: (taskId: string) => void;
@@ -50,10 +51,19 @@ const defaultTasks: Task[] = [
 const TaskGrid = ({
   tasks = defaultTasks,
   viewMode = "grid",
+  searchQuery = "",
   onTaskEdit = (id) => console.log("Edit task:", id),
   onTaskDelete = (id) => console.log("Delete task:", id),
   onTaskComplete = (id) => console.log("Complete task:", id),
 }: TaskGridProps) => {
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      task.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+  );
   const [currentViewMode, setCurrentViewMode] = useState(viewMode);
 
   return (
@@ -90,7 +100,7 @@ const TaskGrid = ({
           }
         `}
       >
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <div
             key={task.id}
             className={currentViewMode === "list" ? "w-full" : ""}

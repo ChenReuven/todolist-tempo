@@ -24,8 +24,10 @@ const Home = ({ initialView = "grid", initialTheme = "light" }: HomeProps) => {
     setIsDarkMode(!isDarkMode);
   };
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleSearch = (query: string) => {
-    console.log("Search query:", query);
+    setSearchQuery(query);
   };
 
   const handleFilterChange = (filter: string) => {
@@ -66,6 +68,7 @@ const Home = ({ initialView = "grid", initialTheme = "light" }: HomeProps) => {
         <main className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900">
           <TaskGrid
             viewMode={currentView}
+            searchQuery={searchQuery}
             onTaskEdit={(id) => console.log("Edit task:", id)}
             onTaskDelete={(id) => console.log("Delete task:", id)}
             onTaskComplete={(id) => console.log("Complete task:", id)}
