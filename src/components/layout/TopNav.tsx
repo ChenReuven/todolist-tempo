@@ -1,13 +1,12 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Grid, List, Moon, Sun } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Grid, List, Moon, Search, Sun } from "lucide-react";
 
 interface TopNavProps {
   onViewToggle?: (view: "grid" | "list") => void;
@@ -26,6 +25,7 @@ const TopNav = ({
 }: TopNavProps) => {
   return (
     <div className="w-full h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 flex items-center justify-between">
+      <div>Chen</div>
       {/* Search Bar */}
       <div className="flex-1 max-w-md">
         <div className="relative">
